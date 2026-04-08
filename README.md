@@ -1,7 +1,6 @@
 ***
 
-# Hi there! 👋 I'm a senior AI engineering student with a passion for 3D vision and real-time rendering. I enjoy creating intuitive software that bridges the gap between AI technology and user experience. Recently, I've been focused on 3D computer vision techniques that enable real-time rendering and interaction with complex 3D objects.
-**AI Engineering Student | 3D Vision & Real-time Rendering Enthusiast**
+# Hi there! 👋
 
 인공지능을 전공하고 있는 4학년 개발자입니다. AI 기술과 실제 사용자 경험을 연결하는 직관적인 소프트웨어를 만드는 데 큰 흥미를 가지고 있습니다. 최근에는 복잡한 3D 객체를 실시간으로 렌더링하고 상호작용할 수 있는 3D 컴퓨터 비전 기술에 집중하고 있습니다.
 
@@ -40,12 +39,10 @@
 
 ---
 
-![image]()
 ### 📊 Project Performance Metrics (DORA)
 성공적인 프로젝트 운영과 지속적인 통합/배포(CI/CD) 품질을 측정하기 위해 **DORA 4대 지표**를 GitHub Actions로 자동 수집하여 모니터링하고 있습니다.
 
 ![DORA Metrics Dashboard](./assets/dora-dashboard.png)
-*(위 경로의 `./assets/dora-dashboard.png` 부분은 실제 깃허브에 이미지를 업로드한 폴더 경로로 맞춰주세요.)*
 
 *   **Deployment Frequency:** 주간 배포 횟수 모니터링
 *   **Lead Time for Changes:** 커밋부터 프로덕션 배포까지의 소요 시간
