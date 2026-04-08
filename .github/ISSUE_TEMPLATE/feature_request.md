@@ -3,7 +3,6 @@ name: Feature Request
 about: 프로젝트에 새로운 기능이나 개선 사항을 제안합니다.
 title: "[FEATURE] "
 labels: 'type: feature'
-assignees: ''
 ---
 
 ## 🚀 기능 설명
@@ -12,9 +11,6 @@ assignees: ''
 ## 🎯 해결하려는 문제
 <!-- 이 기능이 왜 필요한지, 어떤 문제를 해결하는지 작성해 주세요. -->
 
-## 💡 제안하는 구현 방식
-<!-- Python, C++, Flutter 등 활용할 기술과 구체적인 구현 아이디어가 있다면 적어주세요. -->
-
-## ✅ 완료 조건 (DoD - Definition of Done)
+## ✅ 완료 조건 (DoD)
 - [ ] 조건 1
 - [ ] 조건 2
