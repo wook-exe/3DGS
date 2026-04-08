@@ -1,0 +1,84 @@
+name: DORA Metrics Collector
+
+on:
+  # 1. 배포 빈도 및 리드 타임 측정을 위한 트리거
+  workflow_run:
+    workflows: ["Deploy to Production"] # 실제 운영 배포 워크플로우 이름으로 변경
+    types:
+      - completed
+
+  # 2. 장애 발생 및 복구 시간 측정을 위한 트리거
+  issues:
+    types: [opened, closed]
+
+jobs:
+  # ==========================================
+  # Job 1: 배포 관련 지표 (DF, Lead Time) 수집
+  # ==========================================
+  collect_deployment_metrics:
+    name: Collect DF and Lead Time
+    # 배포 워크플로우가 성공적으로 완료되었을 때만 실행
+    if: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # 리드 타임 계산을 위해 전체 커밋 히스토리 필요
+
+      - name: Calculate Lead Time and Log Deployment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const deployTime = new Date('${{ github.event.workflow_run.updated_at }}').getTime();
+            const headCommitSha = '${{ github.event.workflow_run.head_sha }}';
+            
+            // 1. 해당 배포의 최신 커밋 정보 가져오기
+            const { data: commitData } = await github.rest.repos.getCommit({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: headCommitSha
+            });
+            
+            const commitTime = new Date(commitData.commit.author.date).getTime();
+            
+            // 2. 리드 타임 계산 (밀리초 -> 분 변환)
+            const leadTimeMinutes = (deployTime - commitTime) / (1000 * 60);
+            
+            console.log(`🚀 Deployment Frequency: 1 (Deploy Triggered)`);
+            console.log(`⏱️ Lead Time for Change: ${leadTimeMinutes.toFixed(2)} minutes`);
+            
+            // TODO: 여기서 수집된 데이터를 외부 API(DB, Datadog, BigQuery 등)로 전송합니다.
+            // fetch('https://your-metrics-api.com/dora/deploy', { method: 'POST', body: JSON.stringify({ leadTime: leadTimeMinutes }) });
+
+  # ==========================================
+  # Job 2: 장애 관련 지표 (MTTR, CFR) 수집
+  # ==========================================
+  collect_incident_metrics:
+    name: Collect MTTR and Change Failure Rate
+    # 이슈 이벤트이면서 'incident' 라벨이 포함된 경우에만 실행
+    if: ${{ github.event_name == 'issues' && contains(github.event.issue.labels.*.name, 'incident') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Calculate Incident Metrics
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issueState = '${{ github.event.issue.state }}';
+            const issueCreatedAt = new Date('${{ github.event.issue.created_at }}').getTime();
+            
+            if (issueState === 'open') {
+              console.log(`🚨 Incident Opened: CFR 대상 카운트 증가`);
+              // TODO: 외부 API로 장애 발생 사실 전송 (총 배포 수 대비 실패율 계산용)
+            } 
+            else if (issueState === 'closed') {
+              const issueClosedAt = new Date('${{ github.event.issue.closed_at }}').getTime();
+              
+              // MTTR 계산 (밀리초 -> 분 변환)
+              const mttrMinutes = (issueClosedAt - issueCreatedAt) / (1000 * 60);
+              
+              console.log(`✅ Incident Closed!`);
+              console.log(`🛠️ Mean Time To Restore (MTTR) for this incident: ${mttrMinutes.toFixed(2)} minutes`);
+              
+              // TODO: 외부 API로 복구 완료 시간 전송
+            }
