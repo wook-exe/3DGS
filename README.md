@@ -51,3 +51,27 @@
 
 
 ***
+
+# 📸 3DGS-Viewer (소형 제품 3D 스캔 및 360° 가상 시점 뷰어)
+
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Python](https://img.shields.io/badge/python-3.10%2B-blue)
+![C++](https://img.shields.io/badge/C%2B%2B-14%2B-orange)
+
+## 📖 개요 (Overview)
+**3DGS-Viewer**는 고가의 3D 스캐너 없이, 스마트폰이나 일반 카메라로 촬영한 소형 제품의 영상을 기반으로 부드럽고 사실적인 3D 가상 시점을 제공하는 프로젝트입니다. 
+최신 **3D Gaussian Splatting (3DGS)** 기술을 적용하여, 복잡한 메쉬(Mesh) 생성 없이 실시간 렌더링과 자유로운 시점 조작(웹/HMD)을 지원합니다.
+
+## ✨ 주요 기능 (Features)
+- 📷 **카메라 포즈 추정:** Colmap(SfM)을 활용한 입력 영상의 정밀한 카메라 위치 및 방향 계산
+- 🌌 **3D Gaussian 최적화:** 제품의 형태와 색상을 완벽하게 반영하는 3DGS 모델 생성 (CUDA 가속)
+- 🖥️ **가상 시점 렌더링:** WebGL 기반으로 사용자가 웹에서 자유롭게 회전/확대/축소하며 관찰 가능
+
+## 🚀 시작하기 (Getting Started)
+프로젝트 로컬 환경 설정 및 실행 방법은 [Wiki: Getting Started](https://github.com/본인아이디/레포지토리이름/wiki/Getting-Started) 문서를 참고해 주세요.
+
+## 🤝 기여하기 (Contributing)
+오픈소스 기여에 관심이 있으시다면 [CONTRIBUTING.md](./CONTRIBUTING.md)를 먼저 읽어주세요. 모든 버그 리포트, 기능 제안, PR을 환영합니다!
+
+## 📜 라이선스 (License)
+이 프로젝트는 [MIT License](./LICENSE)를 따릅니다.
