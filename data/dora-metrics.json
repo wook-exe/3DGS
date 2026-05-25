@@ -1,10 +1,10 @@
 {
-  "date_range": "2026-05-11 ~ 2026-05-18",
+  "date_range": "2026-05-18 ~ 2026-05-25",
   "metrics": {
     "deployment_frequency": 5,
     "lead_time_for_changes": "3.2h",
     "mean_time_to_restore": "1.5h",
     "change_failure_rate": "15%"
   },
-  "timestamp": "2026-05-18T03:55:40.957Z"
+  "timestamp": "2026-05-25T04:04:11.209Z"
 }
