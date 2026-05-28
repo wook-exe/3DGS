@@ -1,6 +1,20 @@
 version: 2
 updates:
   - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "08:45"
+      timezone: "Asia/Seoul"
+    open-pull-requests-limit: 5
+    groups:
+      npm-e2e:
+        dependency-type: "development"
+    commit-message:
+      prefix: "deps(e2e)"
+
+  - package-ecosystem: "npm"
     directory: "/viewer"
     schedule:
       interval: "weekly"
