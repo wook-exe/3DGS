@@ -1,0 +1,99 @@
+name: Dependency Security
+
+on:
+  pull_request:
+    branches: ["main"]
+  push:
+    branches: ["main"]
+  schedule:
+    - cron: "0 0 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  npm-audit-and-snyk:
+    name: npm audit and Snyk report
+    runs-on: ubuntu-latest
+    env:
+      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: viewer/package-lock.json
+
+      - name: Install npm dependencies
+        working-directory: viewer
+        run: npm ci
+
+      - name: Prepare security report directory
+        run: mkdir -p security-reports
+
+      - name: Run npm audit
+        working-directory: viewer
+        run: npm audit --audit-level=moderate --json > ../security-reports/npm-audit.json
+        continue-on-error: true
+
+      - name: Run Snyk test
+        if: env.SNYK_TOKEN != ''
+        working-directory: viewer
+        run: npx snyk test --json-file-output=../security-reports/snyk.json
+        continue-on-error: true
+
+      - name: Mark Snyk as skipped
+        if: env.SNYK_TOKEN == ''
+        run: |
+          echo '{"skipped": true}' > security-reports/snyk.json
+
+      - name: Summarize dependency security results
+        id: summary
+        run: node .github/scripts/security-summary.mjs security-reports
+
+      - name: Upload security report
+        uses: actions/upload-artifact@v4
+        with:
+          name: dependency-security-report
+          path: security-reports/
+
+      - name: Create or update security issue
+        if: steps.summary.outputs.blocking_count != '0' && github.event_name != 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const title = '[Security] Dependency vulnerability report';
+            const body = fs.readFileSync('${{ steps.summary.outputs.summary_path }}', 'utf8');
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              creator: 'github-actions[bot]'
+            });
+            const existing = issues.find((issue) => issue.title === title);
+            if (existing) {
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.number,
+                body
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body
+              });
+            }
+
+      - name: Fail on blocking vulnerabilities
+        if: steps.summary.outputs.blocking_count != '0'
+        run: exit 1

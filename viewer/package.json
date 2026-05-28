@@ -1,0 +1,38 @@
+{
+  "name": "@wook-exe/3dgs-viewer",
+  "version": "1.0.1",
+  "description": "Reusable JavaScript utilities for the 3DGS Viewer web client.",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wook-exe/3DGS.git",
+    "directory": "viewer"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "pack:check": "npm pack --dry-run",
+    "test": "node --test"
+  },
+  "keywords": [
+    "3dgs",
+    "gaussian-splatting",
+    "viewer",
+    "webgl"
+  ],
+  "engines": {
+    "node": ">=20"
+  }
+}
