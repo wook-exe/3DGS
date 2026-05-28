@@ -7,4 +7,5 @@ viewer/node_modules/
 viewer/dist/
 
 security-reports/
+public/
 *.log
