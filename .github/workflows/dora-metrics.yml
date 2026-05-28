@@ -22,12 +22,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0 # 리드 타임 계산을 위해 전체 커밋 히스토리 필요
 
       - name: Calculate Lead Time and Log Deployment
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const deployTime = new Date('${{ github.event.workflow_run.updated_at }}').getTime();
@@ -61,7 +61,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Calculate Incident Metrics
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const issueState = '${{ github.event.issue.state }}';
