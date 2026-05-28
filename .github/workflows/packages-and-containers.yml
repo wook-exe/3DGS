@@ -76,6 +76,7 @@ jobs:
           docker run --rm -d --name 3dgs-viewer-smoke -p 8000:8000 3dgs-viewer:ci
           trap 'docker stop 3dgs-viewer-smoke' EXIT
           sleep 3
+          curl --fail http://127.0.0.1:8000/health
           curl --fail http://127.0.0.1:8000/1.html
 
       - name: Set up Docker Buildx
