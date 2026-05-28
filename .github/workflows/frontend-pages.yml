@@ -72,7 +72,8 @@ jobs:
           keep_files: true
 
       - name: Print live URL
-        run: echo "Live URL: ${{ needs.build.outputs.preview_url }}"
+        run: |
+          echo "Live URL: ${{ needs.build.outputs.preview_url }}"
 
   deploy-preview:
     name: Deploy PR preview
