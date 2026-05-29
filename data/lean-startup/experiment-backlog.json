@@ -1,0 +1,33 @@
+{
+  "project_board": "3DGS Viewer Lean Startup Experiments",
+  "items": [
+    {
+      "id": "LS-001",
+      "title": "Validate whether compact release-control copy improves task success",
+      "status": "Done",
+      "github_label": "experiment",
+      "hypothesis": "Users will understand release status faster with compact feature flag and A/B variant summaries."
+    },
+    {
+      "id": "LS-002",
+      "title": "Collect 10 persona-based feedback records",
+      "status": "Done",
+      "github_label": "user-feedback",
+      "hypothesis": "Different technical and non-technical personas reveal different product risks."
+    },
+    {
+      "id": "LS-003",
+      "title": "Run weekly metrics report from A/B events",
+      "status": "InProgress",
+      "github_label": "metrics",
+      "hypothesis": "Automated reporting reduces manual experiment review overhead."
+    },
+    {
+      "id": "LS-004",
+      "title": "Decide Pivot or Persevere from 2-week results",
+      "status": "Done",
+      "github_label": "decision",
+      "hypothesis": "Metric deltas are strong enough to justify persevere on compact dashboard controls."
+    }
+  ]
+}
