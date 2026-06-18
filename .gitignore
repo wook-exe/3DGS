@@ -8,4 +8,8 @@ viewer/dist/
 
 security-reports/
 public/
+coverage.xml
+.coverage
+test-results/
+playwright-report/
 *.log
