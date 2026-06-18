@@ -1,0 +1,47 @@
+{
+  "experiment_id": "3dgs-viewer-lean-2026w22",
+  "duration": "2 weeks",
+  "feature_flag": "enhanced_dashboard_cards",
+  "primary_metric": "task_success_rate",
+  "secondary_metrics": [
+    "time_to_value_seconds",
+    "satisfaction",
+    "event_count"
+  ],
+  "variants": {
+    "control": {
+      "description": "Original DORA dashboard layout",
+      "week_1": {
+        "users": 5,
+        "task_success_rate": 0.6,
+        "avg_time_to_value_seconds": 128.8,
+        "avg_satisfaction": 3.2,
+        "event_count": 21
+      },
+      "week_2": {
+        "users": 5,
+        "task_success_rate": 0.6,
+        "avg_time_to_value_seconds": 120.4,
+        "avg_satisfaction": 3.3,
+        "event_count": 25
+      }
+    },
+    "compact": {
+      "description": "Compact release-control and faster status summary",
+      "week_1": {
+        "users": 5,
+        "task_success_rate": 1.0,
+        "avg_time_to_value_seconds": 58.8,
+        "avg_satisfaction": 4.6,
+        "event_count": 36
+      },
+      "week_2": {
+        "users": 5,
+        "task_success_rate": 1.0,
+        "avg_time_to_value_seconds": 54.2,
+        "avg_satisfaction": 4.7,
+        "event_count": 41
+      }
+    }
+  }
+}

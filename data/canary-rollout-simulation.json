@@ -1,0 +1,34 @@
+[
+  {
+    "stage": "canary-1",
+    "traffic_percent": 1,
+    "success_rate": 1.0,
+    "p95_latency_ms": 180,
+    "healthy": true,
+    "action": "promote"
+  },
+  {
+    "stage": "canary-10",
+    "traffic_percent": 10,
+    "success_rate": 0.998,
+    "p95_latency_ms": 210,
+    "healthy": true,
+    "action": "promote"
+  },
+  {
+    "stage": "canary-50",
+    "traffic_percent": 50,
+    "success_rate": 0.997,
+    "p95_latency_ms": 260,
+    "healthy": true,
+    "action": "promote"
+  },
+  {
+    "stage": "full-rollout",
+    "traffic_percent": 100,
+    "success_rate": 0.996,
+    "p95_latency_ms": 290,
+    "healthy": true,
+    "action": "promote"
+  }
+]
