@@ -1,10 +1,10 @@
 {
-  "date_range": "2026-06-22 ~ 2026-06-29",
+  "date_range": "2026-06-29 ~ 2026-07-06",
   "metrics": {
     "deployment_frequency": 5,
     "lead_time_for_changes": "3.2h",
     "mean_time_to_restore": "1.5h",
     "change_failure_rate": "15%"
   },
-  "timestamp": "2026-06-29T04:10:32.299Z"
+  "timestamp": "2026-07-06T03:47:05.735Z"
 }
