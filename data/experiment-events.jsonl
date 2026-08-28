@@ -1,0 +1,3 @@
+{"timestamp": "2026-05-28T03:36:18.269707+00:00", "event_name": "dashboard_loaded", "user_id": "student-001", "experiment_key": "dashboard_chart_density", "variant": "control", "properties": {"source": "local-verification"}}
+{"timestamp": "2026-05-28T03:52:04.572899+00:00", "event_name": "e2e_dashboard_loaded", "user_id": "e2e-student", "experiment_key": "dashboard_chart_density", "variant": "compact", "properties": {"source": "playwright"}}
+{"timestamp": "2026-05-28T03:53:14.144477+00:00", "event_name": "e2e_dashboard_loaded", "user_id": "e2e-student", "experiment_key": "dashboard_chart_density", "variant": "compact", "properties": {"source": "playwright"}}

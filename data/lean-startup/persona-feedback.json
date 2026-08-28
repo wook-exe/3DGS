@@ -1,0 +1,107 @@
+{
+  "experiment_id": "3dgs-viewer-lean-2026w22",
+  "collection_method": "LLM-simulated user interview based on scenario prompts",
+  "scenario": "A user opens the 3DGS Viewer dashboard, reviews DORA/release controls, checks model status, and decides whether the viewer is useful for a small-product scan workflow.",
+  "participants": [
+    {
+      "id": "P01",
+      "persona": "AI engineering student",
+      "pattern": "Explores metrics first, then checks docs and APIs.",
+      "variant": "control",
+      "task_success": true,
+      "time_to_value_seconds": 78,
+      "satisfaction": 4,
+      "feedback": "The dashboard proves the DevOps pipeline quickly, but I wanted a clearer link from the metrics to the actual 3DGS viewer workflow."
+    },
+    {
+      "id": "P02",
+      "persona": "MLOps teaching assistant",
+      "pattern": "Audits reproducibility, CI evidence, and rollout logs.",
+      "variant": "compact",
+      "task_success": true,
+      "time_to_value_seconds": 62,
+      "satisfaction": 5,
+      "feedback": "The compact release-control panel makes it easier to verify feature flags and experiments without reading the source first."
+    },
+    {
+      "id": "P03",
+      "persona": "Manufacturing QA operator",
+      "pattern": "Looks for PASS/FAIL status and operational clarity.",
+      "variant": "control",
+      "task_success": false,
+      "time_to_value_seconds": 144,
+      "satisfaction": 3,
+      "feedback": "The charts are readable, but I need a more obvious inspection result table and less engineering terminology."
+    },
+    {
+      "id": "P04",
+      "persona": "Frontend developer",
+      "pattern": "Checks page load, responsive layout, and visual hierarchy.",
+      "variant": "compact",
+      "task_success": true,
+      "time_to_value_seconds": 55,
+      "satisfaction": 4,
+      "feedback": "The release controls are useful, and the compact variant reduces scrolling. Mobile layout should be tested next."
+    },
+    {
+      "id": "P05",
+      "persona": "Backend developer",
+      "pattern": "Calls health, flags, and event APIs before using the UI.",
+      "variant": "compact",
+      "task_success": true,
+      "time_to_value_seconds": 49,
+      "satisfaction": 5,
+      "feedback": "The /flags and /events endpoints make the experiment measurable. I would add schema validation before production."
+    },
+    {
+      "id": "P06",
+      "persona": "Project manager",
+      "pattern": "Looks for KPI deltas and go/no-go decisions.",
+      "variant": "control",
+      "task_success": true,
+      "time_to_value_seconds": 91,
+      "satisfaction": 4,
+      "feedback": "The KPI framing is strong, but the dashboard should show the current experiment hypothesis and decision status."
+    },
+    {
+      "id": "P07",
+      "persona": "Open-source reviewer",
+      "pattern": "Reviews README, workflows, tests, and contribution readiness.",
+      "variant": "compact",
+      "task_success": true,
+      "time_to_value_seconds": 70,
+      "satisfaction": 4,
+      "feedback": "The repo is easy to review because workflows, docs, and experiment logs are linked. Keep generated reports small."
+    },
+    {
+      "id": "P08",
+      "persona": "Computer vision researcher",
+      "pattern": "Checks whether metrics connect to 3DGS/model quality.",
+      "variant": "control",
+      "task_success": false,
+      "time_to_value_seconds": 151,
+      "satisfaction": 3,
+      "feedback": "The DevOps side is clear, but I need evidence that viewer quality or scan success improves, not only deployment metrics."
+    },
+    {
+      "id": "P09",
+      "persona": "Cloud operations engineer",
+      "pattern": "Evaluates deployability, health checks, and rollback readiness.",
+      "variant": "compact",
+      "task_success": true,
+      "time_to_value_seconds": 58,
+      "satisfaction": 5,
+      "feedback": "The canary and health-check story is convincing. I would preserve Cloud Run logs as artifacts for final assessment."
+    },
+    {
+      "id": "P10",
+      "persona": "Non-technical exhibition curator",
+      "pattern": "Looks for simple product-viewer value and avoids technical details.",
+      "variant": "control",
+      "task_success": false,
+      "time_to_value_seconds": 180,
+      "satisfaction": 2,
+      "feedback": "I understand the system is reliable, but I could not quickly see what a visitor would experience in the 360 viewer."
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+name: Lean Startup Experiment Report
+
+on:
+  schedule:
+    - cron: "0 1 * * 1"
+  workflow_dispatch:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "data/lean-startup/**"
+      - "scripts/generate_lean_report.py"
+      - ".github/workflows/lean-startup-report.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  generate-report:
+    name: Generate Lean Startup report
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate weekly report and decision record
+        run: python scripts/generate_lean_report.py
+
+      - name: Upload Lean Startup report artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: lean-startup-report
+          path: |
+            docs/lean-startup-weekly-report.md
+            docs/adr/0001-lean-startup-persevere-decision.md
+            data/lean-startup/
+
+      - name: Write job summary
+        run: |
+          cat docs/lean-startup-weekly-report.md >> "$GITHUB_STEP_SUMMARY"
